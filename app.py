@@ -113,23 +113,23 @@ rf_results.columns = ['Method', 'Training MSE', 'Training R2', 'Test MSE', 'Test
 df_models = pd.concat([lr_results, rf_results], axis=0)
 df_models.reset_index(drop=True, inplace=True)
 st.write(df_models)
-st.divider()
-
-forest = RandomForestRegressor()
-forest.fit(x_train, y_train)
-st.markdown(f"- Random forest Score: {forest.score(x_test, y_test)}")
-
-forest = RandomForestRegressor()
-
-param_grid = {
-    'n_estimators': [3, 10, 30],
-    'max_features': [2, 4, 6, 8],
-    'min_samples_split': [2, 4, 6, 8],
-    'max_depth': [None, 4, 8]
-}
-
-grid_search = GridSearchCV(forest, param_grid, cv=5, scoring='neg_mean_squared_error', return_train_score=True)
-grid_search.fit(x_train, y_train)
-
-st.write(f"- Best estimators : {grid_search.best_estimator_}")
-st.markdown(f"- Grid Search Score: {grid_search.best_estimator_.score(x_test, y_test)}")
+# st.divider()
+#
+# forest = RandomForestRegressor()
+# forest.fit(x_train, y_train)
+# st.markdown(f"- Random forest Score: {forest.score(x_test, y_test)}")
+#
+# forest = RandomForestRegressor()
+#
+# param_grid = {
+#     'n_estimators': [3, 10, 30],
+#     'max_features': [2, 4, 6, 8],
+#     'min_samples_split': [2, 4, 6, 8],
+#     'max_depth': [None, 4, 8]
+# }
+#
+# grid_search = GridSearchCV(forest, param_grid, cv=5, scoring='neg_mean_squared_error', return_train_score=True)
+# grid_search.fit(x_train, y_train)
+#
+# st.write(f"- Best estimators : {grid_search.best_estimator_}")
+# st.markdown(f"- Grid Search Score: {grid_search.best_estimator_.score(x_test, y_test)}")
